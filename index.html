@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker@1.9.0/dist/datepicker.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
     <body class="">
@@ -65,20 +64,22 @@
               Informações de Usuário
             </div>
             <div class="card-body">
-              <form class="row" id="form">
+              <form class="row" id="form1">
                 <div class="form-group col-sm-12 col-md-6 col-lg-3 mt-3 mb-3">
-                  <label for="nome">Nome</label>
+                  <label for="nome">Nome do Usuário</label>
                   <input class="form-control border border-black required" type="text" name="nome" id="nome" required>
+                  <span class="span-required">Mínimo 4 caracteres.</span>
                 </div>
       
                 <div class="form-group col-sm-6 col-md-3 mt-3 mb-3">
                   <label for="datadeNascimento">Data de Nascimento</label>
-                  <input class="form-control border border-black requerid e" type="date" name="datadeNascimento" id="datadeNascimento" required>
+                  <input class="form-control border border-black required" type="date" name="datadeNascimento" id="datadeNascimento" required>
                 </div>
       
                 <div class="form-group col-sm-6 col-md-3 mt-3 mb-3">
                   <label for="telefone">Telefone</label>
-                  <input class="form-control border border-black required" type="tel" maxlength="15" onkeyup="handlePhone(event)" />
+                  <input class="form-control border border-black required" id="telefone" type="tel" maxlength="15" onkeyup="handlePhone(event)" />
+                  <span class="span-required">Máx 11 digitos.</span>
                 </div>
       
                 <div class="form-group col-sm-6 col-md-3 mt-3 mb-3">
@@ -86,11 +87,13 @@
                   <select name="area" id="area" class="form-control border border-black required" required>
                     <option value="" selected disabled>Selecione uma área</option>
                   </select>
+                  <span class="span-required">Selecione sua área.</span>
                 </div>
       
                 <div class="form-group col-lg-3 col-sm-12 mt-3 mb-3">
                   <label for="senha">Senha Forte</label>
                   <input class="form-control border border-black required" type="password" name="senha" id="senha" placeholder="A senha deve conter 8 digitos." required>
+                  <span class="span-required">A senha deve conter maiusculas, minusculas e caracteres especiais.</span>
                 </div>
               </form>
             </div>
@@ -101,10 +104,10 @@
               Informações de Sistema
             </div>
             <div class="card-body">
-              <form class="row" id="form">
+              <form class="row" id="form2">
                 <div class="form-group col-sm-6 col-md-3 mt-3 mb-3">
-                  <label for="nome">Nome</label>
-                  <input class="form-control border border-black required" type="text" name="nome" id="nome" required>
+                  <label for="nome">Nome do Sistema</label>
+                  <input class="form-control border border-black required" type="text" name="nome" id="nome2" required>
                 </div>
       
                 <div class="form-group col-sm-6 col-md-3 mt-3 mb-3">
@@ -116,7 +119,7 @@
                   <label for="description">Descrição</label>
                   <textarea name="description" id="description" class="form-control border border-black" rows="5"></textarea>
                 </div>
-                <button class="btn btn-light border border-black col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 d-grid mx-auto" type="submit">Enviar</button>
+                <button id="btEnviar" class="btn btn-light border border-black col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 d-grid mx-auto" type="submit">Enviar</button>
               </form>
             </div>
           </div>
@@ -126,6 +129,7 @@
 
     <!-- #region SCRIPT -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="./js/share.js"></script>
     <script src="./js/controller.js"></script>
