@@ -1,84 +1,71 @@
-$(function(){
-    
-    const controller = new Controller();
-    
-    controller.inicializar();
-
-})
-
-const handlePhone = (event) => {
-    let input = event.target
-    input.value = phoneMask(input.value)
-}
+$(function () {
   
-const phoneMask = (value) => {
-    if (!value) return ""
-    value = value.replace(/\D/g,'')
-    value = value.replace(/(\d{2})(\d)/,"($1) $2")
-    value = value.replace(/(\d)(\d{4})$/,"$1-$2")
-    return value  
-}
+  const controller = new Controller();
 
-const nameInput = document.getElementById('nome').value;
-const telefoneInput = document.getElementById('telefone').value;
-const senhaInput = document.getElementById('senha').value;
-const numeroInput = document.getElementById('numero').value;
-const nameSisInput = document.getElementById('nomeSistema').value;
-const numRequisition = document.getElementById('numero').value;
+  controller.inicializar();
 
+  //Validação do Telefone com Máscara
 
-form.addEventListener('submit', ev => {
-    ev.preventDefault();
+  function handlePhone(event) {
+    let input = event.target;
+    input.value = phoneMask(input.value);
+  }
 
-    validateInputs();
+  const phoneMask = (value) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+    return value;
+  };
 
-    const setError = (element, message) => {
-        const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.error');
+  //Validaação dos demais campos.
 
-        errorDisplay.innerText = message;
-        inputControl.classList.add('error');
-        inputControl.classList.add('success');
+  const formulary = document.getElementById("form");
+  const required = document.querySelectorAll(".required");
+
+  function setError(index) {
+    required[index].style.border = "2px solid #e63636";
+  }
+
+  function validatePassword(password) {
+    return /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|]).{8,}$/.test(
+      password
+    );
+  }
+
+  function validateForm(ev) {
+    const nome = document.getElementById("nome").value;
+    const datadeNascimento = document.getElementById("datadeNascimento").value;
+    const telefone = document.getElementById("telefone").value;
+    const area = document.getElementById("area").value;
+    const senha = document.getElementById("senha").value;
+
+    if (
+      nome !== "" ||
+      datadeNascimento === "" ||
+      telefone === "" ||
+      area === ""
+    ) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      ev.preventDefault();
+      return false;
     }
-    
-    /*var telefoneRegex = /^\([0-9]{2}\)[0-9]{4,5}-?[0-9]{4}$/
 
-    
-    var senhaRegex = /^(?=.*[a-z)(?=.*[A-Z])(?=.*[!@#$%^&*()-+[\]{}|;:',.<>?~]).{8,}$/
-
-    
-    var numeroRegex = /^[\d]$/
-
-    if(!telefoneRegex.test(telefoneInput)) {
-        alert("Digite um telefone válido.")
-        ev.preventDefault()
+    if (!validatePassword(senha)) {
+      alert("A senha não atende aos requisitos mínimos de segurança.");
+      ev.preventDefault();
+      return false;
     }
 
-    if(!senhaRegex.test(senhaInput)) {
-        alert("A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial, e ter no mínimo 8 caracteres.")
-        ev.preventDefault()
-    }
+    return true;
+  }
 
-    if(!numeroRegex.test(numeroInput)) {
-        alert("O campo deve ser preenchido apenas com números.")
-        ev.preventDefault()
-    }*/
-});
-
-const validateInputs = () => {
-    const nameValue = nameInput.value.trim();
-    const telefoneValue = telefoneInput.trim();
-    const senhaValue = senhaInput.trim();
-    const numberValue = numberInput.trim();
-    const nameSisValue = nameSisInput.trim();
-    const numReqValue = numRequisition.trim();
-
-    if(nameValue === ""){
-        setError(nameInput, "Digite seu nome.")
-    }
-};
-
-$('.datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
+  document
+    .getElementById("user-form")
+    .addEventListener("submit", function (event) {
+      if (!validateForm(event)) {
+        event.preventDefault();
+      }
+    });
 });

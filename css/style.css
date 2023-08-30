@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.neg{
+    font-weight: bold;
+}
+body{
+    padding: 0;
+}
+.card-custom{
+    margin-top: 10px;
+}
+
+.container-custom{
+    margin-top: 20px;
+}
